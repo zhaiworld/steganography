@@ -169,7 +169,7 @@ class Steganography(object):
         """
         return read_text(image_path)
 
-
+'''
 # Main program
 def main():
     if len(sys.argv) == 5 and sys.argv[1] == '-e':
@@ -187,7 +187,23 @@ def main():
         print(Steganography.decode(input_image_path))
         return
     print_help_text()
+'''
+def encode():
+    print "请输入一张图片的存储位置，例如：C:\picture\01.jpg"
+    input_image_path = raw_input()
+    print "请输入隐写后的图片存储位置，例如：C:\picture\01-steg.jpg"
+    output_image_path = raw_input()
+    print "请输入要隐写到图片里的内容"
+    context = raw_input()
+    print "隐写中........30%"
+    Steganography.encode(input_image_path, output_image_path, context)
+    print("完成:{}".format(output_image_path))
 
+def decode():
+    print "请输入隐写图片的存储位置，例如：C:\picture\01-steg.jpg"
+    input_image_path = raw_input()
+    print "解密结果如下："
+    print(Steganography.decode(input_image_path))
 
 def print_help_text():
     print("ERROR: not steganography command")
@@ -200,4 +216,15 @@ def print_help_text():
     print("")
 
 if __name__ == "__main__":
-    main()
+    print "------------------------------------------------------"
+    print "隐写术算是一种加密技术，权威的wiki说法是“隐写术是一门关于信息隐藏的技巧与科学，所谓信息隐藏指的是不让除预期的接收者之外的任何人知晓信息的传递事件或者信息的内容。"
+    print "------------------------------------------------------"
+    print "把信息隐写到图片中将选择1并回车--------1；\n解密图片中的信息请选择2并回车--------2"
+    while (1):
+        choice = int(raw_input())
+        if choice == 1:
+            encode()
+        elif choice == 2:
+            decode()
+        else:
+            print "输入有误，请重新输入"
